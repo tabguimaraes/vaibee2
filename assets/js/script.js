@@ -12,4 +12,4 @@ async function getData() {
   imgPop.src = responseData.cover_medium;
 }
 
-// getData();
+getData();
