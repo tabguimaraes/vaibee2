@@ -10,8 +10,6 @@
     --color-amber-100: oklch(96.2% 0.059 95.617);
     --color-gray-600: oklch(44.6% 0.03 256.802);
     --spacing: 0.25rem;
-    --text-xl: 1.25rem;
-    --text-xl--line-height: calc(1.75 / 1.25);
     --text-2xl: 1.5rem;
     --text-2xl--line-height: calc(2 / 1.5);
     --text-3xl: 1.875rem;
@@ -20,10 +18,7 @@
     --text-4xl--line-height: calc(2.5 / 2.25);
     --text-6xl: 3.75rem;
     --text-6xl--line-height: 1;
-    --text-7xl: 4.5rem;
-    --text-7xl--line-height: 1;
     --font-weight-semibold: 600;
-    --font-weight-bold: 700;
     --radius-2xl: 1rem;
     --animate-pulse: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
     --default-transition-duration: 150ms;
@@ -181,9 +176,6 @@
   }
 }
 @layer utilities {
-  .m-5 {
-    margin: calc(var(--spacing) * 5);
-  }
   .mb-5 {
     margin-bottom: calc(var(--spacing) * 5);
   }
@@ -206,9 +198,6 @@
   .h-\[150px\] {
     height: 150px;
   }
-  .h-\[350px\] {
-    height: 350px;
-  }
   .h-dvh {
     height: 100dvh;
   }
@@ -227,9 +216,6 @@
   .flex-1 {
     flex: 1;
   }
-  .flex-none {
-    flex: none;
-  }
   .border-collapse {
     border-collapse: collapse;
   }
@@ -247,9 +233,6 @@
   }
   .justify-center {
     justify-content: center;
-  }
-  .gap-0 {
-    gap: calc(var(--spacing) * 0);
   }
   .gap-5 {
     gap: calc(var(--spacing) * 5);
@@ -274,6 +257,12 @@
   }
   .bg-\[\#282828\] {
     background-color: #282828;
+  }
+  .bg-\[\#414141\] {
+    background-color: #414141;
+  }
+  .bg-\[\#747474\] {
+    background-color: #747474;
   }
   .bg-amber-100 {
     background-color: var(--color-amber-100);
@@ -316,14 +305,23 @@
     --tw-font-weight: var(--font-weight-semibold);
     font-weight: var(--font-weight-semibold);
   }
+  .text-\[\#2e2e2e\] {
+    color: #2e2e2e;
+  }
   .text-\[\#282828\] {
     color: #282828;
+  }
+  .text-\[\#717171\] {
+    color: #717171;
   }
   .text-\[\#ceaa2c\] {
     color: #ceaa2c;
   }
   .text-\[\#f2e9cc\] {
     color: #f2e9cc;
+  }
+  .text-\[\#ffbb00\] {
+    color: #ffbb00;
   }
   .italic {
     font-style: italic;
@@ -349,6 +347,11 @@
       color: #ceaa2c;
     }
   }
+  .\*\:text-\[\#ffbb00\] {
+    :is(& > *) {
+      color: #ffbb00;
+    }
+  }
   .hover\:scale-110 {
     &:hover {
       @media (hover: hover) {
@@ -356,6 +359,13 @@
         --tw-scale-y: 110%;
         --tw-scale-z: 110%;
         scale: var(--tw-scale-x) var(--tw-scale-y);
+      }
+    }
+  }
+  .hover\:bg-\[\#414141\] {
+    &:hover {
+      @media (hover: hover) {
+        background-color: #414141;
       }
     }
   }

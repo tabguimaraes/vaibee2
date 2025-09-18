@@ -30,12 +30,14 @@ function criarContainerMusicas(imagem, musica, album, artista) {
     "p-5",
     "items-center",
     "justify-around",
-    "hover:bg-gray-600",
+    "hover:bg-[#414141]",
     "transition",
     "duration-300",
   );
   img.classList.add("mb-5", "rounded-2xl");
   h2.classList.add("text-2xl", "truncate");
+  p.classList.add("text-[#f2e9cc]");
+  span.classList.add("text-[#f2e9cc]");
 
   // Receber os valores dos parametros
   img.src = imagem;
