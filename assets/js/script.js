@@ -25,17 +25,17 @@ function criarContainerMusicas(imagem, musica, album, artista) {
 
   // Atribuição das classes
   article.classList.add(
-    "h-[350px]",
     "min-w-[250px]",
     "flex-1",
     "p-5",
     "items-center",
     "justify-around",
-
     "hover:bg-gray-600",
+    "transition",
+    "duration-300",
   );
   img.classList.add("mb-5", "rounded-2xl");
-  h2.classList.add("text-3xl");
+  h2.classList.add("text-2xl", "truncate");
 
   // Receber os valores dos parametros
   img.src = imagem;
@@ -63,7 +63,7 @@ function inserirMusicasEmAlta(lista) {
     const imagem = item.album.cover_medium;
     const musica = item.title_short;
 
-    // console.log(item);
+    console.log(item);
 
     // Artista
     // console.log(item.artist.name);
