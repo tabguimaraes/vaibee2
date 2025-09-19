@@ -4,7 +4,10 @@ const playLists = document.getElementById("playLists");
 const podcasts = document.getElementById("podcasts");
 
 // URL principal para albuns, músicas e podcasts
-const url = `https://api.deezer.com/chart/`;
+const url = `https://corsproxy.io/?url=https://api.deezer.com/chart/`;
+
+//URL Preview de música
+const trackPreview = "https://corsproxy.io/?url=https://api.deezer.com/track/";
 
 async function getData() {
   const response = await fetch(url);
@@ -50,13 +53,18 @@ function criarCards(imagem, musica, album, artista, section) {
 
   // Incluir os elementos
   picture.appendChild(img);
-
   article.appendChild(picture);
   article.appendChild(h2);
   article.appendChild(span);
   article.appendChild(p);
   href.appendChild(article);
   section.appendChild(href);
+
+  // evento de clique no card
+  href.addEventListener("click", (e) => {
+    e.preventDefault(); // evita navegação
+    verDetalhes({ imagem, musica, album, artista });
+  });
 }
 
 function atribuirInfosNosCards(lista) {
@@ -88,10 +96,34 @@ function atribuirInfosNosCards(lista) {
   });
 }
 
-console.log(main);
+function verDetalhes({ imagem, musica, album, artista }) {
+  // limpa o main
+  main.innerHTML = "";
 
-main.addEventListener("click", function (evento) {
-  evento.target.addEventListener("click", (event) => {
-    console.log(event);
-  });
-});
+  // cria a nova section
+  const section = document.createElement("section");
+  section.classList.add("p-10");
+
+  const img = document.createElement("img");
+  img.src = imagem;
+  img.classList.add("mb-5", "rounded-2xl");
+
+  const h2 = document.createElement("h2");
+  h2.innerText = musica;
+  h2.classList.add("text-3xl", "mb-3");
+
+  const span = document.createElement("span");
+  span.innerText = album;
+  span.classList.add("block", "mb-2", "text-[#f2e9cc]");
+
+  const p = document.createElement("p");
+  p.innerText = artista;
+  p.classList.add("text-[#f2e9cc]");
+
+  section.appendChild(img);
+  section.appendChild(h2);
+  section.appendChild(span);
+  section.appendChild(p);
+
+  main.appendChild(section);
+}
