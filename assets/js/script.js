@@ -1,3 +1,23 @@
+// import "player.style/tailwind-audio";
+
+/* 
+import 'player.style/tailwind-audio';
+
+const template = document.createElement('template');
+template.innerHTML = `
+  <media-theme-tailwind-audio style="width: 100%">
+    <audio
+      slot="media"
+      src="https://stream.mux.com/fXNzVtmtWuyz00xnSrJg4OJH6PyNo6D02UzmgeKGkP5YQ/low.mp4"
+      playsinline
+      crossorigin="anonymous"
+    ></audio>
+  </media-theme-tailwind-audio>`;
+
+document.body.append(template.content);
+
+*/
+
 const main = document.getElementById("main");
 const musicasEmAlta = document.getElementById("musicasEmAlta");
 const playLists = document.getElementById("playLists");
@@ -5,9 +25,6 @@ const podcasts = document.getElementById("podcasts");
 
 // URL principal para albuns, músicas e podcasts
 const url = `https://corsproxy.io/?url=https://api.deezer.com/chart/`;
-
-//URL Preview de música
-const trackPreview = "https://corsproxy.io/?url=https://api.deezer.com/track/";
 
 async function getData() {
   const response = await fetch(url);
@@ -18,7 +35,7 @@ async function getData() {
 
 getData();
 
-function criarCards(imagem, musica, album, artista, section) {
+function criarCards(imagem, musica, album, artista, section, id) {
   //Criação dos elementos e atribuição das classes
   const href = document.createElement("a");
   const article = document.createElement("article");
@@ -63,7 +80,7 @@ function criarCards(imagem, musica, album, artista, section) {
   // evento de clique no card
   href.addEventListener("click", (e) => {
     e.preventDefault(); // evita navegação
-    verDetalhes({ imagem, musica, album, artista });
+    verDetalhes({ imagem, musica, album, artista, id });
   });
 }
 
@@ -77,8 +94,11 @@ function atribuirInfosNosCards(lista) {
     const artista = item.artist.name;
     const imagem = item.album.cover_medium;
     const title = item.title_short;
+    const preview = item.preview;
 
-    criarCards(imagem, title, album, artista, musicasEmAlta);
+    console.log(preview);
+
+    criarCards(imagem, title, album, artista, musicasEmAlta, preview);
   });
 
   listaPlayLists.forEach((item) => {
@@ -96,13 +116,25 @@ function atribuirInfosNosCards(lista) {
   });
 }
 
-function verDetalhes({ imagem, musica, album, artista }) {
+function verDetalhes({ imagem, musica, album, artista, id }) {
   // limpa o main
   main.innerHTML = "";
 
   // cria a nova section
   const section = document.createElement("section");
   section.classList.add("p-10");
+
+  // cria elewmento template
+  const template = document.createElement("template");
+
+  template.innerHTML = `
+  <media-theme-tailwind-audio style="width: 100%">
+    <audio
+      slot="media"
+      src=${id}
+      playsinline
+      crossorigin="anonymous"
+    ></audio>`;
 
   const img = document.createElement("img");
   img.src = imagem;
@@ -124,6 +156,7 @@ function verDetalhes({ imagem, musica, album, artista }) {
   section.appendChild(h2);
   section.appendChild(span);
   section.appendChild(p);
+  section.appendChild(template);
 
   main.appendChild(section);
 }
