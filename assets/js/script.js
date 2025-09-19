@@ -1,23 +1,23 @@
-const imgPop = document.getElementById("imgPop");
+const main = document.getElementById("main");
 const musicasEmAlta = document.getElementById("musicasEmAlta");
 const playLists = document.getElementById("playLists");
+const podcasts = document.getElementById("podcasts");
 
-// URL principal para albuns
+// URL principal para albuns, músicas e podcasts
 const url = `https://api.deezer.com/chart/`;
 
 async function getData() {
   const response = await fetch(url);
   let responseData = await response.json();
 
-  console.log(responseData);
-
   atribuirInfosNosCards(responseData);
 }
 
 getData();
 
-function criarCards(imagem, musica, album, artista) {
+function criarCards(imagem, musica, album, artista, section) {
   //Criação dos elementos e atribuição das classes
+  const href = document.createElement("a");
   const article = document.createElement("article");
   const picture = document.createElement("picture");
   const img = document.createElement("img");
@@ -29,6 +29,7 @@ function criarCards(imagem, musica, album, artista) {
   article.classList.add(
     "min-w-[250px]",
     "flex-1",
+    "cursor-pointer",
     "p-5",
     "items-center",
     "justify-around",
@@ -54,32 +55,43 @@ function criarCards(imagem, musica, album, artista) {
   article.appendChild(h2);
   article.appendChild(span);
   article.appendChild(p);
-
-  musicasEmAlta.appendChild(article);
-  // playLists.appendChild(article);
+  href.appendChild(article);
+  section.appendChild(href);
 }
 
 function atribuirInfosNosCards(lista) {
   let listaMusicasEmAlta = [...lista.tracks.data];
-  let playLists = [...lista.playlists.data];
-
-  console.log(playLists);
+  let listaPlayLists = [...lista.playlists.data];
+  let listaPodcasts = [...lista.podcasts.data];
 
   listaMusicasEmAlta.forEach((item) => {
     const album = item.album.title;
     const artista = item.artist.name;
     const imagem = item.album.cover_medium;
-    const musica = item.title_short;
+    const title = item.title_short;
 
-    criarCards(imagem, musica, album, artista);
+    criarCards(imagem, title, album, artista, musicasEmAlta);
   });
 
-  //   playLists.forEach((item) => {
-  //     const album = item.album.title;
-  //     const artista = item.artist.name;
-  //     const imagem = item.album.cover_medium;
-  //     const musica = item.title_short;
+  listaPlayLists.forEach((item) => {
+    const imagem = item.picture_medium;
+    const title = item.title;
 
-  //     criarCards(imagem, musica, album, artista);
-  //   });
+    criarCards(imagem, title, "", "", playLists);
+  });
+
+  listaPodcasts.forEach((item) => {
+    const imagem = item.picture_medium;
+    const title = item.title;
+
+    criarCards(imagem, title, "", "", podcasts);
+  });
 }
+
+console.log(main);
+
+main.addEventListener("click", function (evento) {
+  evento.target.addEventListener("click", (event) => {
+    console.log(event);
+  });
+});
