@@ -1,5 +1,6 @@
 const imgPop = document.getElementById("imgPop");
 const musicasEmAlta = document.getElementById("musicasEmAlta");
+const playLists = document.getElementById("playLists");
 
 // URL principal para albuns
 const url = `https://api.deezer.com/chart/`;
@@ -7,12 +8,15 @@ const url = `https://api.deezer.com/chart/`;
 async function getData() {
   const response = await fetch(url);
   let responseData = await response.json();
-  atribuirInfosMusicasEmAlta(responseData.tracks.data);
+
+  console.log(responseData);
+
+  atribuirInfosNosCards(responseData);
 }
 
 getData();
 
-function criarCardsMusicasEmAlta(imagem, musica, album, artista) {
+function criarCards(imagem, musica, album, artista) {
   //Criação dos elementos e atribuição das classes
   const article = document.createElement("article");
   const picture = document.createElement("picture");
@@ -52,10 +56,14 @@ function criarCardsMusicasEmAlta(imagem, musica, album, artista) {
   article.appendChild(p);
 
   musicasEmAlta.appendChild(article);
+  // playLists.appendChild(article);
 }
 
-function atribuirInfosMusicasEmAlta(lista) {
-  let listaMusicasEmAlta = [...lista];
+function atribuirInfosNosCards(lista) {
+  let listaMusicasEmAlta = [...lista.tracks.data];
+  let playLists = [...lista.playlists.data];
+
+  console.log(playLists);
 
   listaMusicasEmAlta.forEach((item) => {
     const album = item.album.title;
@@ -63,6 +71,15 @@ function atribuirInfosMusicasEmAlta(lista) {
     const imagem = item.album.cover_medium;
     const musica = item.title_short;
 
-    criarCardsMusicasEmAlta(imagem, musica, album, artista);
+    criarCards(imagem, musica, album, artista);
   });
+
+  //   playLists.forEach((item) => {
+  //     const album = item.album.title;
+  //     const artista = item.artist.name;
+  //     const imagem = item.album.cover_medium;
+  //     const musica = item.title_short;
+
+  //     criarCards(imagem, musica, album, artista);
+  //   });
 }
