@@ -96,8 +96,6 @@ function atribuirInfosNosCards(lista) {
     const title = item.title_short;
     const preview = item.preview;
 
-    console.log(preview);
-
     criarCards(imagem, title, album, artista, musicasEmAlta, preview);
   });
 
@@ -127,14 +125,12 @@ function verDetalhes({ imagem, musica, album, artista, id }) {
   // cria elewmento template
   const template = document.createElement("template");
 
-  template.innerHTML = `
-  <media-theme-tailwind-audio style="width: 100%">
-    <audio
+  template.innerHTML = `<audio
       slot="media"
       src=${id}
       playsinline
-      crossorigin="anonymous"
-    ></audio>`;
+      crossorigin="anonymous">
+    </audio>`;
 
   const img = document.createElement("img");
   img.src = imagem;
@@ -156,7 +152,7 @@ function verDetalhes({ imagem, musica, album, artista, id }) {
   section.appendChild(h2);
   section.appendChild(span);
   section.appendChild(p);
-  section.appendChild(template);
+  section.appendChild(template.content.cloneNode(true));
 
   main.appendChild(section);
 }
