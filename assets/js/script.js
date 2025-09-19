@@ -7,14 +7,12 @@ const url = `https://api.deezer.com/chart/`;
 async function getData() {
   const response = await fetch(url);
   let responseData = await response.json();
-  inserirMusicasEmAlta(responseData.tracks.data);
-
-  // criarContainerMusicas(responseData.cover_medium, null, null, null);
+  atribuirInfosMusicasEmAlta(responseData.tracks.data);
 }
 
 getData();
 
-function criarContainerMusicas(imagem, musica, album, artista) {
+function criarCardsMusicasEmAlta(imagem, musica, album, artista) {
   //Criação dos elementos e atribuição das classes
   const article = document.createElement("article");
   const picture = document.createElement("picture");
@@ -56,7 +54,7 @@ function criarContainerMusicas(imagem, musica, album, artista) {
   musicasEmAlta.appendChild(article);
 }
 
-function inserirMusicasEmAlta(lista) {
+function atribuirInfosMusicasEmAlta(lista) {
   let listaMusicasEmAlta = [...lista];
 
   listaMusicasEmAlta.forEach((item) => {
@@ -65,21 +63,6 @@ function inserirMusicasEmAlta(lista) {
     const imagem = item.album.cover_medium;
     const musica = item.title_short;
 
-    console.log(item);
-
-    // Artista
-    // console.log(item.artist.name);
-
-    // Album
-    // console.log(item.album.title);
-
-    //MUsica
-    // console.log(item.title_short);
-
-    //Cover IMG
-    // console.log(item.album.cover_medium);
-
-    // criarContainerMusicas(imagem, musica, album, artista)
-    criarContainerMusicas(imagem, musica, album, artista);
+    criarCardsMusicasEmAlta(imagem, musica, album, artista);
   });
 }
