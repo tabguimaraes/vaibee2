@@ -1,23 +1,3 @@
-// import "player.style/tailwind-audio";
-
-/* 
-import 'player.style/tailwind-audio';
-
-const template = document.createElement('template');
-template.innerHTML = `
-  <media-theme-tailwind-audio style="width: 100%">
-    <audio
-      slot="media"
-      src="https://stream.mux.com/fXNzVtmtWuyz00xnSrJg4OJH6PyNo6D02UzmgeKGkP5YQ/low.mp4"
-      playsinline
-      crossorigin="anonymous"
-    ></audio>
-  </media-theme-tailwind-audio>`;
-
-document.body.append(template.content);
-
-*/
-
 const main = document.getElementById("main");
 const musicasEmAlta = document.getElementById("musicasEmAlta");
 const playLists = document.getElementById("playLists");
@@ -115,22 +95,10 @@ function atribuirInfosNosCards(lista) {
 }
 
 function verDetalhes({ imagem, musica, album, artista, id }) {
-  // limpa o main
   main.innerHTML = "";
 
-  // cria a nova section
   const section = document.createElement("section");
   section.classList.add("p-10");
-
-  // cria elewmento template
-  const template = document.createElement("template");
-
-  template.innerHTML = `<audio
-      slot="media"
-      src=${id}
-      playsinline
-      crossorigin="anonymous">
-    </audio>`;
 
   const img = document.createElement("img");
   img.src = imagem;
@@ -148,11 +116,26 @@ function verDetalhes({ imagem, musica, album, artista, id }) {
   p.innerText = artista;
   p.classList.add("text-[#f2e9cc]");
 
+  // player estilizado
+  const template = document.createElement("template");
+  template.innerHTML = `
+    <media-theme-tailwind-audio style="display: block; width: 80%; height: 75px;
+  border-radius: 20px;
+  overflow: hidden;
+  margin: auto auto; box-shadow: 0 4px 10px rgba(0,0,0,0.15);">
+      <audio 
+        slot="media"
+        src="${id}"
+        playsinline
+        crossorigin="anonymous"
+      ></audio>
+    </media-theme-tailwind-audio>
+  `;
+
   section.appendChild(img);
   section.appendChild(h2);
   section.appendChild(span);
   section.appendChild(p);
-  section.appendChild(template.content.cloneNode(true));
-
   main.appendChild(section);
+  main.appendChild(template.content.cloneNode(true));
 }
