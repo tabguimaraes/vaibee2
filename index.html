@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./src/output.css" />
+    <!-- Estilos básicos do player -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/vidstack/styles/base.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/vidstack/styles/ui/buttons.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/vidstack/styles/ui/sliders.css"
+    />
+
+    <script
+      type="module"
+      src="https://cdn.jsdelivr.net/npm/player.style/tailwind-audio/+esm"
+      defer
+    ></script>
+
+    <script src="./assets/js/script.js" defer type="module"></script>
+    <title>VaiBee</title>
+  </head>
+  <body class="scroll-smooth bg-[#282828]">
+    <section class="sticky top-0 z-50 w-full bg-[#282828]">
+      <header
+        class="flex w-full items-center justify-center gap-5 bg-[#414141] p-4 lg:justify-between lg:px-30"
+      >
+        <div class="flex w-fit items-center gap-5">
+          <a class="flex animate-pulse hover:scale-110" href="/"
+            ><img class="size-24" src="./assets/img/logo.png" alt="logo"
+          /></a>
+          <h1 class="text-6xl text-[#f2e9cc]">
+            Vai<span class="text-[#ffbb00] italic">Bee</span>
+          </h1>
+        </div>
+        <ul
+          class="hidden cursor-pointer text-2xl text-[#f2e9cc] *:hover:bg-[#ffbb00] *:hover:text-[#282828] lg:flex lg:justify-between lg:gap-10"
+        >
+          <li class="rounded-full p-4 transition duration-300">
+            <a href="#musicasEmAlta">Músicas em Alta</a>
+          </li>
+          <li class="rounded-full p-4 transition duration-300">
+            <a href="#playLists">Playlists</a>
+          </li>
+          <li class="rounded-full p-4 transition duration-300">
+            <a href="#podcasts">Podcasts</a>
+          </li>
+        </ul>
+        <form class="hidden lg:flex" action="">
+          <input
+            class="h-10 w-full rounded-full bg-amber-100 px-8 text-2xl font-semibold text-[#282828]"
+            type="text"
+            placeholder="O que vamos ouvir hoje?"
+          />
+        </form>
+      </header>
+    </section>
+    <main class="mb-10 *:text-[#ffbb00] lg:px-30" id="main">
+      <!-- <section class="my-10 h-dvh px-4">
+        <h1 class="mb-10 px-4 text-center text-4xl">Músicas em alta</h1>
+        <section
+          class="flex gap-5 overflow-x-clip"
+          id="musicasEmAlta"
+        ></section>
+      </section> -->
+      <section class="my-10 px-4 lg:my-20">
+        <h1 class="mb-10 px-4 text-center text-4xl xl:mb-20 xl:text-7xl">
+          Em alta
+        </h1>
+        <section
+          class="grid lg:grid-cols-2 lg:gap-5"
+          id="musicasEmAlta"
+        ></section>
+      </section>
+      <section class="my-10 px-4">
+        <h1 class="mb-10 px-4 text-center text-4xl">Playlists</h1>
+        <section class="flex gap-5 overflow-x-clip" id="playLists"></section>
+      </section>
+      <section class="my-10 px-4">
+        <h1 class="mb-10 px-4 text-center text-4xl">Podcasts</h1>
+        <section class="flex gap-5 overflow-x-clip" id="podcasts"></section>
+      </section>
+    </main>
+  </body>
+</html>
