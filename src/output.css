@@ -523,6 +523,27 @@
       }
     }
   }
+  .hover\:rounded {
+    &:hover {
+      @media (hover: hover) {
+        border-radius: 0.25rem;
+      }
+    }
+  }
+  .hover\:rounded-2xl {
+    &:hover {
+      @media (hover: hover) {
+        border-radius: var(--radius-2xl);
+      }
+    }
+  }
+  .hover\:rounded-full {
+    &:hover {
+      @media (hover: hover) {
+        border-radius: calc(infinity * 1px);
+      }
+    }
+  }
   .hover\:bg-\[\#414141\] {
     &:hover {
       @media (hover: hover) {
