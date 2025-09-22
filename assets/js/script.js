@@ -15,7 +15,7 @@ async function getData() {
 
 getData();
 
-function criarCards(imagem, musica, album, artista, section, id) {
+function criarCards(imagem, musica, album, artista, section, id, tipo) {
   //Criação dos elementos e atribuição das classes
   const href = document.createElement("a");
   const article = document.createElement("article");
@@ -25,6 +25,7 @@ function criarCards(imagem, musica, album, artista, section, id) {
   const span = document.createElement("span");
   const p = document.createElement("p");
   const containerTexto = document.createElement("div");
+  const audio = document.createElement("audio");
 
   // Atribuição das classes
   article.classList.add(
@@ -52,41 +53,30 @@ function criarCards(imagem, musica, album, artista, section, id) {
     "max-w-[280px]",
   );
 
-  const template = document.createElement("template");
-  template.innerHTML = `
-    <media-theme-tailwind-audio style="width: 100%; height: 10dvh; border-radius: 10px;
-  overflow: hidden;
-  margin: 100 auto;">
-      <audio 
-        slot="media"
-        src="${id}"
-        playsinline
-        crossorigin="anonymous"
-      ></audio>
-    </media-theme-tailwind-audio>
-  `;
-
   // Receber os valores dos parametros
   img.src = imagem;
   h2.innerText = musica;
   span.innerText = album;
   p.innerText = artista;
+  audio.controls = true;
+  audio.src = id;
 
   // Incluir os elementos
   picture.appendChild(img);
   containerTexto.appendChild(h2);
   containerTexto.appendChild(span);
   containerTexto.appendChild(p);
-  // containerTexto.appendChild(playerMusical(preview));
-  containerTexto.appendChild(template.content.cloneNode(true));
+  audio.classList.add("w-full");
+
+  containerTexto.appendChild(audio);
   href.appendChild(picture);
   article.appendChild(href);
   article.appendChild(containerTexto);
   section.appendChild(article);
 
-  // evento de clique no card
-  href.addEventListener("click", (e) => {
-    e.preventDefault(); // evita navegação
+  // Pegar evento de clique no card
+  href.addEventListener("click", (evento) => {
+    evento.preventDefault();
     verDetalhes({ imagem, musica, album, artista, id });
   });
 }
@@ -107,17 +97,21 @@ function atribuirInfosNosCards(lista) {
   });
 
   listaPlayLists.forEach((item) => {
-    const imagem = item.picture_big;
+    const imagem = item.picture_medium;
     const title = item.title;
+    const preview = item.preview;
 
-    criarCards(imagem, title, "", "", playLists);
+    console.log(item);
+
+    criarCards(imagem, title, "", "", playLists, preview);
   });
 
   listaPodcasts.forEach((item) => {
-    const imagem = item.picture_big;
+    const imagem = item.picture_medium;
     const title = item.title;
+    const preview = item.preview;
 
-    criarCards(imagem, title, "", "", podcasts);
+    criarCards(imagem, title, "", "", podcasts, preview);
   });
 }
 
@@ -143,43 +137,16 @@ function verDetalhes({ imagem, musica, album, artista, id }) {
   p.innerText = artista;
   p.classList.add("text-[#f2e9cc]");
 
-  // player estilizado
-  const template = document.createElement("template");
-  template.innerHTML = `
-    <media-theme-tailwind-audio style="display: block; width: 80%; height: 75px;
-  border-radius: 20px;
-  overflow: hidden;
-  margin: auto auto; box-shadow: 0 4px 10px rgba(0,0,0,0.15);">
-      <audio 
-        slot="media"
-        src="${id}"
-        playsinline
-        crossorigin="anonymous"
-      ></audio>
-    </media-theme-tailwind-audio>
-  `;
+  const audio = document.createElement("audio");
+  audio.controls = true;
+  audio.src = id;
 
   section.appendChild(img);
   section.appendChild(h2);
   section.appendChild(span);
   section.appendChild(p);
+  section.appendChild(audio);
   main.appendChild(section);
-  main.appendChild(template.content.cloneNode(true));
 }
 
-// function playerMusical(id) {
-//   const template = document.createElement("template");
-//   template.innerHTML = `
-//     <media-theme-tailwind-audio style="display: block; width: 80%; height: 75px;
-//   border-radius: 20px;
-//   overflow: hidden;
-//   margin: auto auto; box-shadow: 0 4px 10px rgba(0,0,0,0.15);">
-//       <audio
-//         slot="media"
-//         src="${id}"
-//         playsinline
-//         crossorigin="anonymous"
-//       ></audio>
-//     </media-theme-tailwind-audio>
-//   `;
-// }
+// INCLUIR CONDIÇÃO PARA CRIAR CARD DE ACORDO COM O TIPO DE LISTA (EM ALTA, PLAYLISTS OU PODCASTS)
