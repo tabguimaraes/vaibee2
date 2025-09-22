@@ -30,7 +30,7 @@ function criarCards(imagem, musica, album, artista, section, id) {
   article.classList.add(
     "grid",
     "gap-2",
-    "lg:gap-10",
+    "lg:gap-5",
     "place-content-center",
     "p-5",
     "lg:justify-around",
@@ -47,7 +47,7 @@ function criarCards(imagem, musica, album, artista, section, id) {
   containerTexto.classList.add(
     "grid",
     "gap-2",
-    "lg:gap-0",
+    "lg:gap-4",
     "w-full",
     "max-w-[280px]",
   );
@@ -78,7 +78,7 @@ function criarCards(imagem, musica, album, artista, section, id) {
   containerTexto.appendChild(span);
   containerTexto.appendChild(p);
   // containerTexto.appendChild(playerMusical(preview));
-  // containerTexto.appendChild(template.content.cloneNode(true));
+  containerTexto.appendChild(template.content.cloneNode(true));
   href.appendChild(picture);
   article.appendChild(href);
   article.appendChild(containerTexto);
