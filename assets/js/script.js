@@ -37,13 +37,20 @@ function criarCards(imagem, musica, album, artista, section, id) {
     "hover:bg-[#414141]",
     "transition",
     "duration-300",
+    "w-full",
   );
-  img.classList.add("rounded-2xl", "w-[100%]");
-  picture.classList.add("cursor-pointer");
+  picture.classList.add("cursor-pointer", "block", "w-full");
+  img.classList.add("rounded-2xl", "w-full", "h-auto", "object-cover");
   h2.classList.add("text-2xl", "truncate");
   p.classList.add("text-[#f2e9cc]", "truncate");
   span.classList.add("text-[#f2e9cc]", "truncate");
-  containerTexto.classList.add("grid", "gap-2", "lg:gap-0", "w-[280px]");
+  containerTexto.classList.add(
+    "grid",
+    "gap-2",
+    "lg:gap-0",
+    "w-full",
+    "max-w-[280px]",
+  );
 
   const template = document.createElement("template");
   template.innerHTML = `
@@ -71,7 +78,7 @@ function criarCards(imagem, musica, album, artista, section, id) {
   containerTexto.appendChild(span);
   containerTexto.appendChild(p);
   // containerTexto.appendChild(playerMusical(preview));
-  containerTexto.appendChild(template.content.cloneNode(true));
+  // containerTexto.appendChild(template.content.cloneNode(true));
   href.appendChild(picture);
   article.appendChild(href);
   article.appendChild(containerTexto);
@@ -86,6 +93,8 @@ function criarCards(imagem, musica, album, artista, section, id) {
 
 function atribuirInfosNosCards(lista) {
   let listaMusicasEmAlta = [...lista.tracks.data];
+  let listaPlayLists = [...lista.playlists.data];
+  let listaPodcasts = [...lista.podcasts.data];
 
   listaMusicasEmAlta.forEach((item) => {
     const album = item.album.title;
@@ -95,6 +104,20 @@ function atribuirInfosNosCards(lista) {
     const preview = item.preview;
 
     criarCards(imagem, title, album, artista, musicasEmAlta, preview);
+  });
+
+  listaPlayLists.forEach((item) => {
+    const imagem = item.picture_big;
+    const title = item.title;
+
+    criarCards(imagem, title, "", "", playLists);
+  });
+
+  listaPodcasts.forEach((item) => {
+    const imagem = item.picture_big;
+    const title = item.title;
+
+    criarCards(imagem, title, "", "", podcasts);
   });
 }
 
