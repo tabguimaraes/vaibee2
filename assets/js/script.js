@@ -32,7 +32,6 @@ function criarCards(imagem, musica, album, artista, section, id) {
     "gap-2",
     "lg:gap-10",
     "place-content-center",
-    "lg:grid-cols-2",
     "p-5",
     "lg:justify-around",
     "hover:bg-[#414141]",
@@ -42,8 +41,8 @@ function criarCards(imagem, musica, album, artista, section, id) {
   img.classList.add("rounded-2xl", "w-[100%]");
   picture.classList.add("cursor-pointer");
   h2.classList.add("text-2xl", "truncate");
-  p.classList.add("text-[#f2e9cc]");
-  span.classList.add("text-[#f2e9cc]");
+  p.classList.add("text-[#f2e9cc]", "truncate");
+  span.classList.add("text-[#f2e9cc]", "truncate");
   containerTexto.classList.add("grid", "gap-2", "lg:gap-0", "w-[280px]");
 
   const template = document.createElement("template");
