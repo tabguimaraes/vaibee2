@@ -30,9 +30,11 @@
   <body class="scroll-smooth bg-[#282828]">
     <section class="sticky top-0 z-50 w-full bg-[#282828]">
       <header
-        class="flex w-full items-center justify-center gap-5 bg-[#414141] p-4 lg:justify-between lg:px-30"
+        class="grid w-full auto-rows-min grid-cols-2 grid-rows-2 items-center justify-center gap-0 bg-[#414141] px-4 pt-4 pb-0 lg:grid-cols-3 lg:grid-rows-1 lg:justify-between lg:px-30"
       >
-        <div class="flex w-fit items-center gap-5">
+        <div
+          class="col-span-full flex w-fit items-center gap-5 place-self-center"
+        >
           <a class="flex animate-pulse hover:scale-110" href="/"
             ><img class="size-24" src="./assets/img/logo.png" alt="logo"
           /></a>
@@ -53,9 +55,12 @@
             <a href="#podcasts">Podcasts</a>
           </li>
         </ul>
-        <form class="hidden lg:flex" action="">
+        <form
+          class="col-span-full max-w-[300px] place-self-center lg:flex"
+          action=""
+        >
           <input
-            class="h-10 w-full rounded-full border-none bg-amber-100 px-8 text-2xl font-semibold text-[#282828] shadow-none placeholder:text-amber-100 focus:border-[#ffbb00] focus:ring-2 focus:ring-[#ffbb00] focus:outline-none"
+            class="h-10 w-[100%] rounded-full border-none bg-amber-100 px-8 text-2xl font-semibold text-[#282828] shadow-none placeholder:text-amber-100 focus:border-[#ffbb00] focus:ring-2 focus:ring-[#ffbb00] focus:outline-none"
             type="text"
             placeholder="O que vamos ouvir hoje?"
           />
