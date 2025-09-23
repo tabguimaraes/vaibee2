@@ -146,7 +146,7 @@ function verDetalhesDoCard(imagem, musica, album, artista, id) {
 
   iconeVoltar.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24">
   <circle cx="12" cy="12" r="12" fill="#ffbb00"/>
-  <path d="M14 6l-6 6 6 6" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M14 6l-6 6 6 6" fill="none" stroke="#282828" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
   </svg>
   `;
 
