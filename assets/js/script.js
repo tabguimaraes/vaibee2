@@ -85,7 +85,7 @@ function criarCards(imagem, musica, album, artista, section, id, tipo) {
   // Pegar evento de clique no card
   href.addEventListener("click", (evento) => {
     evento.preventDefault();
-    verDetalhesDoCard(imagem, musica, album, artista, id);
+    verDetalhesDoCard(imagem, musica, album, artista, id, tipo);
   });
 }
 
@@ -123,11 +123,11 @@ function atribuirInfosNosCards(lista) {
     const imagem = item.picture_medium;
     const title = item.title;
 
-    criarCards(imagem, title, "", "", podcasts, "");
+    criarCards(imagem, title, "", "", podcasts, "", "podcasts");
   });
 }
 
-function verDetalhesDoCard(imagem, musica, album, artista, id) {
+function verDetalhesDoCard(imagem, musica, album, artista, id, tipo) {
   // Inserido para que a tela se mova para o topo quando clicar em algum card que está muito abaixo da visualização
   window.scrollTo({
     top: 0,
@@ -210,7 +210,11 @@ function verDetalhesDoCard(imagem, musica, album, artista, id) {
   section.appendChild(h2);
   section.appendChild(span);
   section.appendChild(p);
-  section.appendChild(audio);
+
+  if (tipo === "musicasEmAlta") {
+    section.appendChild(audio);
+  }
+
   main.prepend(section);
 
   document.getElementById("btnVoltar").addEventListener("click", () => {
