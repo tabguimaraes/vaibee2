@@ -199,6 +199,18 @@
   .top-\[35\%\] {
     top: 35%;
   }
+  .top-\[40\%\] {
+    top: 40%;
+  }
+  .top-\[45\%\] {
+    top: 45%;
+  }
+  .top-\[48\%\] {
+    top: 48%;
+  }
+  .top-\[50\%\] {
+    top: 50%;
+  }
   .left-\[8\%\] {
     left: 8%;
   }
@@ -471,6 +483,13 @@
       }
     }
   }
+  .hover\:cursor-pointer {
+    &:hover {
+      @media (hover: hover) {
+        cursor: pointer;
+      }
+    }
+  }
   .hover\:bg-\[\#414141\] {
     &:hover {
       @media (hover: hover) {
@@ -525,6 +544,16 @@
       outline-style: none;
     }
   }
+  .md\:top-\[20\%\] {
+    @media (width >= 48rem) {
+      top: 20%;
+    }
+  }
+  .md\:top-\[30\%\] {
+    @media (width >= 48rem) {
+      top: 30%;
+    }
+  }
   .md\:top-\[35\%\] {
     @media (width >= 48rem) {
       top: 35%;
@@ -553,6 +582,16 @@
   .md\:left-\[10\%\] {
     @media (width >= 48rem) {
       left: 10%;
+    }
+  }
+  .md\:left-\[12\%\] {
+    @media (width >= 48rem) {
+      left: 12%;
+    }
+  }
+  .md\:left-\[15\%\] {
+    @media (width >= 48rem) {
+      left: 15%;
     }
   }
   .md\:col-\[1\] {
@@ -615,6 +654,36 @@
       grid-template-columns: repeat(3, minmax(0, 1fr));
     }
   }
+  .md\:grid-cols-\[1fr_auto\] {
+    @media (width >= 48rem) {
+      grid-template-columns: 1fr auto;
+    }
+  }
+  .md\:grid-cols-\[500px_1fr\] {
+    @media (width >= 48rem) {
+      grid-template-columns: 500px 1fr;
+    }
+  }
+  .md\:grid-cols-\[auto_1fr\] {
+    @media (width >= 48rem) {
+      grid-template-columns: auto 1fr;
+    }
+  }
+  .md\:grid-cols-\[auto_250px\] {
+    @media (width >= 48rem) {
+      grid-template-columns: auto 250px;
+    }
+  }
+  .md\:grid-cols-\[auto_500px\] {
+    @media (width >= 48rem) {
+      grid-template-columns: auto 500px;
+    }
+  }
+  .md\:grid-cols-\[auto_auto\] {
+    @media (width >= 48rem) {
+      grid-template-columns: auto auto;
+    }
+  }
   .md\:grid-rows-1 {
     @media (width >= 48rem) {
       grid-template-rows: repeat(1, minmax(0, 1fr));
@@ -628,6 +697,46 @@
   .md\:grid-rows-5 {
     @media (width >= 48rem) {
       grid-template-rows: repeat(5, minmax(0, 1fr));
+    }
+  }
+  .lg\:top-\[0\%\] {
+    @media (width >= 64rem) {
+      top: 0%;
+    }
+  }
+  .lg\:top-\[20\%\] {
+    @media (width >= 64rem) {
+      top: 20%;
+    }
+  }
+  .lg\:top-\[35\%\] {
+    @media (width >= 64rem) {
+      top: 35%;
+    }
+  }
+  .lg\:top-\[45\%\] {
+    @media (width >= 64rem) {
+      top: 45%;
+    }
+  }
+  .lg\:left-\[9\%\] {
+    @media (width >= 64rem) {
+      left: 9%;
+    }
+  }
+  .lg\:left-\[12\%\] {
+    @media (width >= 64rem) {
+      left: 12%;
+    }
+  }
+  .lg\:left-\[20\%\] {
+    @media (width >= 64rem) {
+      left: 20%;
+    }
+  }
+  .lg\:left-\[25\%\] {
+    @media (width >= 64rem) {
+      left: 25%;
     }
   }
   .lg\:my-20 {

@@ -128,9 +128,17 @@ function atribuirInfosNosCards(lista) {
 }
 
 function verDetalhesDoCard(imagem, musica, album, artista, id) {
-  main.innerHTML = "";
+  // Inserido para que a tela se mova para o topo quando clicar em algum card que está muito abaixo da visualização
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
 
-  main.classList.toggle("relative", "hidden");
+  // Verificar o primeiro filho fdo elemento main e remove-lo se o id foi "detalhes" (o id que usei na sessão detalhes do cards)
+  const primeiroElemento = main.firstChild;
+  if (primeiroElemento && primeiroElemento.id === "detalhes") {
+    primeiroElemento.remove();
+  }
 
   const hrefVoltar = document.createElement("a");
 
@@ -138,13 +146,15 @@ function verDetalhesDoCard(imagem, musica, album, artista, id) {
 
   iconeVoltar.classList.add(
     "absolute",
-    "top-[30%]",
+    "top-[40%]",
     "left-[12%]",
     "hover:scale-115",
     "transition",
     "duration-300",
-    "md:left-[9%]",
-    "md:top-[40%]",
+    "md:left-[15%]",
+    "md:top-[35%]",
+    "lg:left-[20%]",
+    "lg:top-[45%]",
   );
 
   iconeVoltar.setAttribute("id", "btnVoltar");
@@ -154,17 +164,19 @@ function verDetalhesDoCard(imagem, musica, album, artista, id) {
   <path d="M14 6l-6 6 6 6" fill="none" stroke="#282828" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
   </svg>
   `;
-
+  hrefVoltar.classList.add("hover:cursor-pointer");
   hrefVoltar.appendChild(iconeVoltar);
 
   const section = document.createElement("section");
   section.classList.add(
     "p-10",
     "grid",
-    "md:grid-cols-2",
+    "md:grid-cols-[500px_1fr]",
     "md:grid-rows-4",
     "md:mt-20",
   );
+
+  section.setAttribute("id", "detalhes");
 
   const img = document.createElement("img");
   img.src = imagem;
@@ -199,7 +211,7 @@ function verDetalhesDoCard(imagem, musica, album, artista, id) {
   section.appendChild(span);
   section.appendChild(p);
   section.appendChild(audio);
-  main.appendChild(section);
+  main.prepend(section);
 
   document.getElementById("btnVoltar").addEventListener("click", () => {
     location.reload();
