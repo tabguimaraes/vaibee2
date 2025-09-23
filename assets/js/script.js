@@ -50,7 +50,7 @@ function criarCards(imagem, musica, album, artista, section, id, tipo) {
   );
   picture.classList.add("cursor-pointer", "block", "w-full");
   img.classList.add("rounded-2xl", "w-full", "h-auto", "object-cover");
-  h2.classList.add("text-2xl", "truncate");
+  h2.classList.add("text-2xl", "truncate", "text-[#ffbb00]");
   p.classList.add("text-[#f2e9cc]", "truncate");
   span.classList.add("text-[#f2e9cc]", "truncate");
   containerTextoEAudio.classList.add(
@@ -192,7 +192,7 @@ function verDetalhesDoCard(imagem, musica, album, artista, id, tipo) {
 
   const h2 = document.createElement("h2");
   h2.innerText = musica;
-  h2.classList.add("text-3xl", "mb-3", "md:col-[2]");
+  h2.classList.add("text-3xl", "mb-3", "md:col-[2]", "text-[#ffbb00]");
 
   const span = document.createElement("span");
   span.innerText = album;
@@ -226,13 +226,13 @@ function verDetalhesDoCard(imagem, musica, album, artista, id, tipo) {
 
 async function buscarMusicas(consulta) {
   // URL para buscas
-  const searchURL = `https://corsproxy.io/?url=https://api.deezer.com/search?q=${consulta}`;
+  const endPoint = `https://corsproxy.io/?url=https://api.deezer.com/search?q=${consulta}`;
 
-  const buscarFetch = await fetch(searchURL);
+  const response = await fetch(endPoint);
 
-  const buscarResponse = await buscarFetch.json();
+  let dadosDaBusca = await response.json();
 
-  console.log(buscarResponse);
+  inserirResultadosDeBusca(dadosDaBusca.data, consulta);
 }
 
 formSearch.addEventListener("submit", (evento) => {
@@ -245,3 +245,143 @@ formSearch.addEventListener("submit", (evento) => {
     inputBar.value = "";
   }, 1500);
 });
+
+function inserirResultadosDeBusca(dadosDaBusca, valorBuscado) {
+  const dados = [...dadosDaBusca];
+
+  const sectionContainer = document.createElement("section");
+  sectionContainer.classList.add("my-10", "px-4", "lg:my-20");
+
+  const tituloDaBusca = document.createElement("h1");
+  const span = document.createElement("span");
+
+  tituloDaBusca.classList.add(
+    "text-center",
+    "text-[#f2e9cc]",
+    "mt-10",
+    "text-2xl",
+    "text-wrap",
+    "truncate",
+    "px-5",
+  );
+  span.classList.add("text-yellow-400", "italic");
+  span.innerText = String(valorBuscado).toUpperCase();
+
+  tituloDaBusca.append("Você buscou por: ");
+  tituloDaBusca.appendChild(span);
+
+  sectionContainer.appendChild(tituloDaBusca);
+
+  const sectionResultadosContainer = document.createElement("section");
+  sectionResultadosContainer.classList.add(
+    "grid",
+    "grid-cols-2",
+    "lg:grid-cols-5",
+    "lg:gap-5",
+  );
+
+  sectionContainer.appendChild(sectionResultadosContainer);
+
+  main.innerHTML = "";
+
+  dados.forEach((item, index) => {
+    console.log(item, index + 1);
+
+    const posicao = index + 1;
+    const imagem = item.album.cover_medium;
+    const musica = item.title_short;
+    const album = item.album.title;
+    const artista = item.artist.name;
+    const audio = item.preview;
+
+    let novoCard = cardResultadosBuscas(
+      posicao,
+      imagem,
+      musica,
+      album,
+      artista,
+      audio,
+    );
+
+    sectionContainer.appendChild(novoCard);
+  });
+
+  main.appendChild(sectionContainer);
+}
+
+function cardResultadosBuscas(index, imagem, musica, album, artista, audio) {
+  const cardContainer = document.createElement("div");
+
+  cardContainer.classList.add(
+    "grid",
+    "grid-cols-[auto_2fr_2fr_1fr]",
+    "grid-rows-4",
+    "gap-5",
+    "p-4",
+    "hover:bg-[#414141]",
+    "rounded-2xl",
+    "transition",
+    "duration-300",
+  );
+
+  // posição na lista
+  const posicaoNaLista = document.createElement("p");
+  posicaoNaLista.innerText = index;
+  posicaoNaLista.classList.add(
+    "col-[1]",
+    "text-2xl",
+    "place-self-center",
+    "row-span-full",
+    "text-[#ffbb00]",
+  );
+
+  // capa do álbum
+  const capaDoAlbum = document.createElement("img");
+  capaDoAlbum.src = imagem;
+  capaDoAlbum.classList.add(
+    "col-start-2",
+    "col-end-4",
+    "row-start-1",
+    "row-span-4",
+    "rounded-xl",
+    "object-cover",
+    "w-full",
+    "h-auto",
+  );
+
+  // título da música
+  const musicaTitulo = document.createElement("p");
+  musicaTitulo.innerText = musica;
+  musicaTitulo.classList.add("col-[4]", "row-[1]", "text-[#ffbb00]", "text-xl");
+
+  // álbum
+  const albumTitulo = document.createElement("p");
+  albumTitulo.innerText = album;
+  albumTitulo.classList.add("col-[4]", "row-[2]", "text-[#f2e9cc]", "truncate");
+
+  // artista
+  const artistaTitulo = document.createElement("p");
+  artistaTitulo.innerText = artista;
+  artistaTitulo.classList.add(
+    "col-[4]",
+    "row-[3]",
+    "text-[#f2e9cc]",
+    "truncate",
+  );
+
+  // preview do áudio
+  const audioPreview = document.createElement("audio");
+  audioPreview.controls = true;
+  audioPreview.src = audio;
+  audioPreview.classList.add("col-[4]", "row-[4]", "w-full");
+
+  // adiciona tudo no container
+  cardContainer.appendChild(posicaoNaLista);
+  cardContainer.appendChild(capaDoAlbum);
+  cardContainer.appendChild(musicaTitulo);
+  cardContainer.appendChild(albumTitulo);
+  cardContainer.appendChild(artistaTitulo);
+  cardContainer.appendChild(audioPreview);
+
+  return cardContainer;
+}
