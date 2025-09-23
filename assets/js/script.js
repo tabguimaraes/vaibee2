@@ -110,7 +110,6 @@ function atribuirInfosNosCards(lista) {
   listaPlayLists.forEach((item) => {
     const imagem = item.picture_medium;
     const title = item.title;
-    // const preview = item.preview;
 
     console.log(item);
 
@@ -120,7 +119,6 @@ function atribuirInfosNosCards(lista) {
   listaPodcasts.forEach((item) => {
     const imagem = item.picture_medium;
     const title = item.title;
-    // const preview = item.preview;
 
     criarCards(imagem, title, "", "", podcasts, "");
   });
@@ -159,5 +157,3 @@ function verDetalhes({ imagem, musica, album, artista, id }) {
   section.appendChild(audio);
   main.appendChild(section);
 }
-
-// INCLUIR CONDIÇÃO PARA CRIAR CARD DE ACORDO COM O TIPO DE LISTA (EM ALTA, PLAYLISTS OU PODCASTS)
