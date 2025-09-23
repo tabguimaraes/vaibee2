@@ -111,8 +111,6 @@ function atribuirInfosNosCards(lista) {
     const imagem = item.picture_medium;
     const title = item.title;
 
-    console.log(item);
-
     criarCards(imagem, title, "", "", playLists, "");
   });
 
@@ -157,3 +155,16 @@ function verDetalhesDoCard(imagem, musica, album, artista, id) {
   section.appendChild(audio);
   main.appendChild(section);
 }
+
+async function buscarMusicas(consulta) {
+  // URL para buscas
+  const searchURL = `https://corsproxy.io/?url=https://api.deezer.com/search?q=${consulta}`;
+
+  const buscarFetch = await fetch(searchURL);
+
+  const buscarResponse = await buscarFetch.json();
+
+  console.log(buscarResponse);
+}
+
+buscarMusicas("eminem");
