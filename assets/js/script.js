@@ -3,6 +3,8 @@ const logo = document.getElementById("logo");
 const musicasEmAlta = document.getElementById("musicasEmAlta");
 const playLists = document.getElementById("playLists");
 const podcasts = document.getElementById("podcasts");
+const inputBar = document.getElementById("inputBar");
+const formSearch = document.querySelector("form");
 
 // URL principal para albuns, músicas e podcasts
 const url = `https://corsproxy.io/?url=https://api.deezer.com/chart/`;
@@ -233,4 +235,13 @@ async function buscarMusicas(consulta) {
   console.log(buscarResponse);
 }
 
-buscarMusicas("decadence");
+formSearch.addEventListener("submit", (evento) => {
+  evento.preventDefault();
+
+  const valorDaBusca = inputBar.value;
+  buscarMusicas(valorDaBusca);
+
+  setTimeout(() => {
+    inputBar.value = "";
+  }, 1500);
+});
