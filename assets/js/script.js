@@ -24,7 +24,7 @@ function criarCards(imagem, musica, album, artista, section, id, tipo) {
   const h2 = document.createElement("h2");
   const span = document.createElement("span");
   const p = document.createElement("p");
-  const containerTexto = document.createElement("div");
+  const containerTextoEAudio = document.createElement("div");
   const audio = document.createElement("audio");
 
   // Atribuição das classes
@@ -46,7 +46,7 @@ function criarCards(imagem, musica, album, artista, section, id, tipo) {
   h2.classList.add("text-2xl", "truncate");
   p.classList.add("text-[#f2e9cc]", "truncate");
   span.classList.add("text-[#f2e9cc]", "truncate");
-  containerTexto.classList.add(
+  containerTextoEAudio.classList.add(
     "grid",
     "gap-2",
     "lg:gap-4",
@@ -64,15 +64,17 @@ function criarCards(imagem, musica, album, artista, section, id, tipo) {
 
   // Incluir os elementos
   picture.appendChild(img);
-  containerTexto.appendChild(h2);
-  containerTexto.appendChild(span);
-  containerTexto.appendChild(p);
+  containerTextoEAudio.appendChild(h2);
+  containerTextoEAudio.appendChild(span);
+  containerTextoEAudio.appendChild(p);
   audio.classList.add("w-full");
 
-  containerTexto.appendChild(audio);
+  if (tipo === "musicasEmAlta") {
+    containerTextoEAudio.appendChild(audio);
+  }
   href.appendChild(picture);
   article.appendChild(href);
-  article.appendChild(containerTexto);
+  article.appendChild(containerTextoEAudio);
   section.appendChild(article);
 
   // Pegar evento de clique no card
@@ -94,25 +96,33 @@ function atribuirInfosNosCards(lista) {
     const title = item.title_short;
     const preview = item.preview;
 
-    criarCards(imagem, title, album, artista, musicasEmAlta, preview);
+    criarCards(
+      imagem,
+      title,
+      album,
+      artista,
+      musicasEmAlta,
+      preview,
+      "musicasEmAlta",
+    );
   });
 
   listaPlayLists.forEach((item) => {
     const imagem = item.picture_medium;
     const title = item.title;
-    const preview = item.preview;
+    // const preview = item.preview;
 
     console.log(item);
 
-    criarCards(imagem, title, "", "", playLists, preview);
+    criarCards(imagem, title, "", "", playLists, "");
   });
 
   listaPodcasts.forEach((item) => {
     const imagem = item.picture_medium;
     const title = item.title;
-    const preview = item.preview;
+    // const preview = item.preview;
 
-    criarCards(imagem, title, "", "", podcasts, preview);
+    criarCards(imagem, title, "", "", podcasts, "");
   });
 }
 
