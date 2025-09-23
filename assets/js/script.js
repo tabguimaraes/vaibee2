@@ -134,8 +134,6 @@ function verDetalhesDoCard(imagem, musica, album, artista, id) {
 
   const hrefVoltar = document.createElement("a");
 
-  // hrefVoltar.setAttribute("href", "/");
-
   const iconeVoltar = document.createElement("svg");
 
   iconeVoltar.classList.add(
@@ -174,7 +172,7 @@ function verDetalhesDoCard(imagem, musica, album, artista, id) {
 
   const p = document.createElement("p");
   p.innerText = artista;
-  p.classList.add("text-[#f2e9cc]");
+  p.classList.add("text-[#f2e9cc]", "mb-3");
 
   const audio = document.createElement("audio");
   audio.controls = true;
