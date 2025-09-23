@@ -125,13 +125,32 @@ function atribuirInfosNosCards(lista) {
 function verDetalhesDoCard(imagem, musica, album, artista, id) {
   main.innerHTML = "";
 
+  main.classList.toggle("relative", "hidden");
+
+  const hrefVoltar = document.createElement("a");
+
+  hrefVoltar.setAttribute("href", "/");
+
   const iconeVoltar = document.createElement("svg");
+
+  iconeVoltar.classList.add(
+    "absolute",
+    "top-[30%]",
+    "left-[8%]",
+    "hover:scale-110",
+    "transition",
+    "duration-300",
+  );
+
+  iconeVoltar.setAttribute("id", "btnVoltar");
 
   iconeVoltar.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24">
   <circle cx="12" cy="12" r="12" fill="#ffbb00"/>
   <path d="M14 6l-6 6 6 6" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-</svg>
-`;
+  </svg>
+  `;
+
+  hrefVoltar.appendChild(iconeVoltar);
 
   const section = document.createElement("section");
   section.classList.add("p-10", "grid", "justify-items-center");
@@ -156,7 +175,7 @@ function verDetalhesDoCard(imagem, musica, album, artista, id) {
   audio.controls = true;
   audio.src = id;
 
-  main.appendChild(iconeVoltar);
+  main.appendChild(hrefVoltar);
   section.appendChild(img);
   section.appendChild(h2);
   section.appendChild(span);
