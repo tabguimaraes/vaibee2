@@ -80,7 +80,7 @@ function criarCards(imagem, musica, album, artista, section, id, tipo) {
   // Pegar evento de clique no card
   href.addEventListener("click", (evento) => {
     evento.preventDefault();
-    verDetalhes({ imagem, musica, album, artista, id });
+    verDetalhesDoCard(imagem, musica, album, artista, id);
   });
 }
 
@@ -124,11 +124,11 @@ function atribuirInfosNosCards(lista) {
   });
 }
 
-function verDetalhes({ imagem, musica, album, artista, id }) {
+function verDetalhesDoCard(imagem, musica, album, artista, id) {
   main.innerHTML = "";
 
   const section = document.createElement("section");
-  section.classList.add("p-10");
+  section.classList.add("p-10", "grid", "justify-items-center");
 
   const img = document.createElement("img");
   img.src = imagem;
