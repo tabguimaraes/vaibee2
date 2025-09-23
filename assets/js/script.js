@@ -143,6 +143,8 @@ function verDetalhesDoCard(imagem, musica, album, artista, id) {
     "hover:scale-115",
     "transition",
     "duration-300",
+    "md:left-[9%]",
+    "md:top-[40%]",
   );
 
   iconeVoltar.setAttribute("id", "btnVoltar");
@@ -156,26 +158,38 @@ function verDetalhesDoCard(imagem, musica, album, artista, id) {
   hrefVoltar.appendChild(iconeVoltar);
 
   const section = document.createElement("section");
-  section.classList.add("p-10", "grid");
+  section.classList.add(
+    "p-10",
+    "grid",
+    "md:grid-cols-2",
+    "md:grid-rows-4",
+    "md:mt-20",
+  );
 
   const img = document.createElement("img");
   img.src = imagem;
-  img.classList.add("mb-5", "rounded-2xl", "justify-self-center");
+  img.classList.add(
+    "mb-5",
+    "rounded-2xl",
+    "justify-self-center",
+    "md:col-[1]",
+    "md:row-span-full",
+  );
 
   const h2 = document.createElement("h2");
   h2.innerText = musica;
-  h2.classList.add("text-3xl", "mb-3");
+  h2.classList.add("text-3xl", "mb-3", "md:col-[2]");
 
   const span = document.createElement("span");
   span.innerText = album;
-  span.classList.add("block", "mb-2", "text-[#f2e9cc]");
+  span.classList.add("block", "mb-2", "text-[#f2e9cc]", "md:col-[2]");
 
   const p = document.createElement("p");
   p.innerText = artista;
-  p.classList.add("text-[#f2e9cc]", "mb-3");
+  p.classList.add("text-[#f2e9cc]", "mb-3", "md:col-[2]");
 
   const audio = document.createElement("audio");
-  audio.classList.add("w-full");
+  audio.classList.add("w-full", "md:col-[2]");
   audio.controls = true;
   audio.src = id;
 

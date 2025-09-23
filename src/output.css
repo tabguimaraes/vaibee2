@@ -196,6 +196,9 @@
   .top-\[30\%\] {
     top: 30%;
   }
+  .top-\[35\%\] {
+    top: 35%;
+  }
   .left-\[8\%\] {
     left: 8%;
   }
@@ -213,6 +216,9 @@
   }
   .col-span-full {
     grid-column: 1 / -1;
+  }
+  .row-start-2 {
+    grid-row-start: 2;
   }
   .my-10 {
     margin-block: calc(var(--spacing) * 10);
@@ -519,14 +525,89 @@
       outline-style: none;
     }
   }
+  .md\:top-\[35\%\] {
+    @media (width >= 48rem) {
+      top: 35%;
+    }
+  }
+  .md\:top-\[40\%\] {
+    @media (width >= 48rem) {
+      top: 40%;
+    }
+  }
+  .md\:top-\[45\%\] {
+    @media (width >= 48rem) {
+      top: 45%;
+    }
+  }
+  .md\:left-\[8\%\] {
+    @media (width >= 48rem) {
+      left: 8%;
+    }
+  }
+  .md\:left-\[9\%\] {
+    @media (width >= 48rem) {
+      left: 9%;
+    }
+  }
+  .md\:left-\[10\%\] {
+    @media (width >= 48rem) {
+      left: 10%;
+    }
+  }
   .md\:col-\[1\] {
     @media (width >= 48rem) {
       grid-column: 1;
     }
   }
+  .md\:col-\[2\] {
+    @media (width >= 48rem) {
+      grid-column: 2;
+    }
+  }
   .md\:col-\[3\] {
     @media (width >= 48rem) {
       grid-column: 3;
+    }
+  }
+  .md\:col-span-full {
+    @media (width >= 48rem) {
+      grid-column: 1 / -1;
+    }
+  }
+  .md\:row-\[1\/-1\] {
+    @media (width >= 48rem) {
+      grid-row: 1/-1;
+    }
+  }
+  .md\:row-\[1\] {
+    @media (width >= 48rem) {
+      grid-row: 1;
+    }
+  }
+  .md\:row-span-2 {
+    @media (width >= 48rem) {
+      grid-row: span 2 / span 2;
+    }
+  }
+  .md\:row-span-full {
+    @media (width >= 48rem) {
+      grid-row: 1 / -1;
+    }
+  }
+  .md\:mt-10 {
+    @media (width >= 48rem) {
+      margin-top: calc(var(--spacing) * 10);
+    }
+  }
+  .md\:mt-20 {
+    @media (width >= 48rem) {
+      margin-top: calc(var(--spacing) * 20);
+    }
+  }
+  .md\:grid-cols-2 {
+    @media (width >= 48rem) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
   }
   .md\:grid-cols-3 {
@@ -537,6 +618,16 @@
   .md\:grid-rows-1 {
     @media (width >= 48rem) {
       grid-template-rows: repeat(1, minmax(0, 1fr));
+    }
+  }
+  .md\:grid-rows-4 {
+    @media (width >= 48rem) {
+      grid-template-rows: repeat(4, minmax(0, 1fr));
+    }
+  }
+  .md\:grid-rows-5 {
+    @media (width >= 48rem) {
+      grid-template-rows: repeat(5, minmax(0, 1fr));
     }
   }
   .lg\:my-20 {
