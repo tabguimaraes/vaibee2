@@ -36,7 +36,7 @@ function criarCards(imagem, musica, album, artista, section, id, tipo) {
     "p-5",
     "lg:justify-around",
     "hover:bg-[#414141]",
-    "hover:rounded-2xl",
+    "rounded-2xl",
     "transition",
     "duration-300",
     "w-full",
