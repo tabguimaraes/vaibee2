@@ -139,8 +139,8 @@ function verDetalhesDoCard(imagem, musica, album, artista, id) {
   iconeVoltar.classList.add(
     "absolute",
     "top-[30%]",
-    "left-[8%]",
-    "hover:scale-110",
+    "left-[12%]",
+    "hover:scale-115",
     "transition",
     "duration-300",
   );
@@ -156,11 +156,11 @@ function verDetalhesDoCard(imagem, musica, album, artista, id) {
   hrefVoltar.appendChild(iconeVoltar);
 
   const section = document.createElement("section");
-  section.classList.add("p-10", "grid", "justify-items-center");
+  section.classList.add("p-10", "grid");
 
   const img = document.createElement("img");
   img.src = imagem;
-  img.classList.add("mb-5", "rounded-2xl");
+  img.classList.add("mb-5", "rounded-2xl", "justify-self-center");
 
   const h2 = document.createElement("h2");
   h2.innerText = musica;
@@ -175,6 +175,7 @@ function verDetalhesDoCard(imagem, musica, album, artista, id) {
   p.classList.add("text-[#f2e9cc]", "mb-3");
 
   const audio = document.createElement("audio");
+  audio.classList.add("w-full");
   audio.controls = true;
   audio.src = id;
 
