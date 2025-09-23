@@ -545,6 +545,31 @@
       place-self: center;
     }
   }
+  .md\:col-\[1\] {
+    @media (width >= 48rem) {
+      grid-column: 1;
+    }
+  }
+  .md\:col-\[3\] {
+    @media (width >= 48rem) {
+      grid-column: 3;
+    }
+  }
+  .md\:col-start-1 {
+    @media (width >= 48rem) {
+      grid-column-start: 1;
+    }
+  }
+  .md\:grid-cols-3 {
+    @media (width >= 48rem) {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+  .md\:grid-rows-1 {
+    @media (width >= 48rem) {
+      grid-template-rows: repeat(1, minmax(0, 1fr));
+    }
+  }
   .md\:place-self-center {
     @media (width >= 48rem) {
       place-self: center;
