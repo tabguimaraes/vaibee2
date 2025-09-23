@@ -1,4 +1,5 @@
 const main = document.getElementById("main");
+const logo = document.getElementById("logo");
 const musicasEmAlta = document.getElementById("musicasEmAlta");
 const playLists = document.getElementById("playLists");
 const podcasts = document.getElementById("podcasts");
@@ -14,6 +15,10 @@ async function getData() {
 }
 
 getData();
+
+logo.addEventListener("click", () => {
+  location.reload();
+});
 
 function criarCards(imagem, musica, album, artista, section, id, tipo) {
   //Criação dos elementos e atribuição das classes
@@ -129,7 +134,7 @@ function verDetalhesDoCard(imagem, musica, album, artista, id) {
 
   const hrefVoltar = document.createElement("a");
 
-  hrefVoltar.setAttribute("href", "/");
+  // hrefVoltar.setAttribute("href", "/");
 
   const iconeVoltar = document.createElement("svg");
 
@@ -182,6 +187,10 @@ function verDetalhesDoCard(imagem, musica, album, artista, id) {
   section.appendChild(p);
   section.appendChild(audio);
   main.appendChild(section);
+
+  document.getElementById("btnVoltar").addEventListener("click", () => {
+    location.reload();
+  });
 }
 
 async function buscarMusicas(consulta) {
