@@ -10,10 +10,16 @@ const formSearch = document.querySelector("form");
 const url = `https://corsproxy.io/?url=https://api.deezer.com/chart/`;
 
 async function getData() {
-  const response = await fetch(url);
-  let responseData = await response.json();
+  try {
+    const response = await fetch(url);
+    let responseData = await response.json();
 
-  atribuirInfosNosCards(responseData);
+    console.log(responseData);
+
+    atribuirInfosNosCards(responseData);
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 getData();
@@ -95,6 +101,8 @@ function atribuirInfosNosCards(lista) {
   let listaMusicasEmAlta = [...lista.tracks.data];
   let listaPlayLists = [...lista.playlists.data];
   let listaPodcasts = [...lista.podcasts.data];
+
+  console.log(listaMusicasEmAlta);
 
   listaMusicasEmAlta.forEach((item) => {
     const album = item.album.title;
