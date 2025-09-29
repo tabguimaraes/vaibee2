@@ -14,8 +14,6 @@ async function getData() {
     const response = await fetch(url);
     let responseData = await response.json();
 
-    console.log(responseData);
-
     atribuirInfosNosCards(responseData);
   } catch (error) {
     console.log(error);
@@ -28,7 +26,16 @@ logo.addEventListener("click", () => {
   location.reload();
 });
 
-function criarCards(imagem, musica, album, artista, section, id, tipo) {
+function criarCards(
+  imagem,
+  musica,
+  album,
+  artista,
+  section,
+  id,
+  tipo,
+  imagemBig,
+) {
   //Criação dos elementos e atribuição das classes
   const href = document.createElement("a");
   const article = document.createElement("article");
@@ -93,7 +100,7 @@ function criarCards(imagem, musica, album, artista, section, id, tipo) {
   // Pegar evento de clique no card
   href.addEventListener("click", (evento) => {
     evento.preventDefault();
-    verDetalhesDoCard(imagem, musica, album, artista, id, tipo);
+    verDetalhesDoCard(imagem, musica, album, artista, id, tipo, imagemBig);
   });
 }
 
@@ -102,12 +109,11 @@ function atribuirInfosNosCards(lista) {
   let listaPlayLists = [...lista.playlists.data];
   let listaPodcasts = [...lista.podcasts.data];
 
-  console.log(listaMusicasEmAlta);
-
   listaMusicasEmAlta.forEach((item) => {
     const album = item.album.title;
     const artista = item.artist.name;
     const imagem = item.album.cover_medium;
+    const imagemBig = item.album.cover_big;
     const title = item.title_short;
     const preview = item.preview;
 
@@ -119,25 +125,36 @@ function atribuirInfosNosCards(lista) {
       musicasEmAlta,
       preview,
       "musicasEmAlta",
+      imagemBig,
     );
   });
 
   listaPlayLists.forEach((item) => {
     const imagem = item.picture_medium;
+    const imagemBig = item.picture_big;
     const title = item.title;
 
-    criarCards(imagem, title, "", "", playLists, "");
+    criarCards(imagem, title, "", "", playLists, "", imagemBig);
   });
 
   listaPodcasts.forEach((item) => {
     const imagem = item.picture_medium;
+    const imagemBig = item.picture_big;
     const title = item.title;
 
-    criarCards(imagem, title, "", "", podcasts, "", "podcasts");
+    criarCards(imagem, title, "", "", podcasts, "", "podcasts", imagemBig);
   });
 }
 
-function verDetalhesDoCard(imagem, musica, album, artista, id, tipo) {
+function verDetalhesDoCard(
+  imagem,
+  musica,
+  album,
+  artista,
+  id,
+  tipo,
+  imagemBig,
+) {
   // Inserido para que a tela se mova para o topo quando clicar em algum card que está muito abaixo da visualização
   window.scrollTo({
     top: 0,
@@ -189,7 +206,7 @@ function verDetalhesDoCard(imagem, musica, album, artista, id, tipo) {
   section.setAttribute("id", "detalhes");
 
   const img = document.createElement("img");
-  img.src = imagem;
+  img.src = imagemBig;
   img.classList.add(
     "mb-5",
     "rounded-2xl",
@@ -293,8 +310,6 @@ function inserirResultadosDeBusca(dadosDaBusca, valorBuscado) {
   main.innerHTML = "";
 
   dados.forEach((item, index) => {
-    console.log(item, index + 1);
-
     const posicao = index + 1;
     const imagem = item.album.cover_medium;
     const musica = item.title_short;
