@@ -1,13 +1,12 @@
-const main = document.getElementById("main");
-const logo = document.getElementById("logo");
-const musicasEmAlta = document.getElementById("musicasEmAlta");
-const playLists = document.getElementById("playLists");
-const podcasts = document.getElementById("podcasts");
-const inputBar = document.getElementById("inputBar");
-const formSearch = document.querySelector("form");
-
-// URL principal para albuns, músicas e podcasts
-const url = `https://corsproxy.io/?url=https://api.deezer.com/chart/`;
+const main = document.getElementById("main"),
+  logo = document.getElementById("logo"),
+  musicasEmAlta = document.getElementById("musicasEmAlta"),
+  playLists = document.getElementById("playLists"),
+  podcasts = document.getElementById("podcasts"),
+  inputBar = document.getElementById("inputBar"),
+  formSearch = document.querySelector("form"),
+  // URL principal para albuns, músicas e podcasts
+  url = `https://corsproxy.io/?url=https://api.deezer.com/chart/`;
 
 async function getData() {
   try {
@@ -37,15 +36,15 @@ function criarCards(
   imagemBig,
 ) {
   //Criação dos elementos e atribuição das classes
-  const href = document.createElement("a");
-  const article = document.createElement("article");
-  const picture = document.createElement("picture");
-  const img = document.createElement("img");
-  const h2 = document.createElement("h2");
-  const span = document.createElement("span");
-  const p = document.createElement("p");
-  const containerTextoEAudio = document.createElement("div");
-  const audio = document.createElement("audio");
+  const href = document.createElement("a"),
+    article = document.createElement("article"),
+    picture = document.createElement("picture"),
+    img = document.createElement("img"),
+    h2 = document.createElement("h2"),
+    span = document.createElement("span"),
+    p = document.createElement("p"),
+    containerTextoEAudio = document.createElement("div"),
+    audio = document.createElement("audio");
 
   // Atribuição das classes
   article.classList.add(
@@ -105,17 +104,17 @@ function criarCards(
 }
 
 function atribuirInfosNosCards(lista) {
-  let listaMusicasEmAlta = [...lista.tracks.data];
-  let listaPlayLists = [...lista.playlists.data];
-  let listaPodcasts = [...lista.podcasts.data];
+  let listaMusicasEmAlta = [...lista.tracks.data],
+    listaPlayLists = [...lista.playlists.data],
+    listaPodcasts = [...lista.podcasts.data];
 
   listaMusicasEmAlta.forEach((item) => {
-    const album = item.album.title;
-    const artista = item.artist.name;
-    const imagem = item.album.cover_medium;
-    const imagemBig = item.album.cover_big;
-    const title = item.title_short;
-    const preview = item.preview;
+    const album = item.album.title,
+      artista = item.artist.name,
+      imagem = item.album.cover_medium,
+      imagemBig = item.album.cover_big,
+      title = item.title_short,
+      preview = item.preview;
 
     criarCards(
       imagem,
@@ -130,17 +129,17 @@ function atribuirInfosNosCards(lista) {
   });
 
   listaPlayLists.forEach((item) => {
-    const imagem = item.picture_medium;
-    const imagemBig = item.picture_big;
-    const title = item.title;
+    const imagem = item.picture_medium,
+      imagemBig = item.picture_big,
+      title = item.title;
 
-    criarCards(imagem, title, "", "", playLists, "", imagemBig);
+    criarCards(imagem, title, "", "", playLists, "", "", imagemBig);
   });
 
   listaPodcasts.forEach((item) => {
-    const imagem = item.picture_medium;
-    const imagemBig = item.picture_big;
-    const title = item.title;
+    const imagem = item.picture_medium,
+      imagemBig = item.picture_big,
+      title = item.title;
 
     criarCards(imagem, title, "", "", podcasts, "", "podcasts", imagemBig);
   });
@@ -155,6 +154,9 @@ function verDetalhesDoCard(
   tipo,
   imagemBig,
 ) {
+  const hrefVoltar = document.createElement("a"),
+    iconeVoltar = document.createElement("svg");
+
   // Inserido para que a tela se mova para o topo quando clicar em algum card que está muito abaixo da visualização
   window.scrollTo({
     top: 0,
@@ -164,43 +166,44 @@ function verDetalhesDoCard(
   // Verificar o primeiro filho fdo elemento main e remove-lo se o id foi "detalhes" (o id que usei na sessão detalhes do cards)
   const primeiroElemento = main.firstChild;
   if (primeiroElemento && primeiroElemento.id === "detalhes") {
+    // main.innerHTML = "";
+    iconeVoltar.remove();
+    hrefVoltar.remove();
     primeiroElemento.remove();
   }
 
-  const hrefVoltar = document.createElement("a");
-
-  const iconeVoltar = document.createElement("svg");
+  main.classList.add("relative");
 
   iconeVoltar.classList.add(
     "absolute",
-    "top-[40%]",
-    "left-[12%]",
+    "top-[3.5%]",
+    "left-[2%]",
     "hover:scale-115",
     "transition",
     "duration-300",
-    "md:left-[15%]",
-    "md:top-[35%]",
-    "lg:left-[20%]",
-    "lg:top-[45%]",
+    "md:top-[3%]",
+    "lg:left-[10%]",
+    "lg:top-[7%]",
   );
 
-  iconeVoltar.setAttribute("id", "btnVoltar");
+  hrefVoltar.classList.add("hover:cursor-pointer");
+  hrefVoltar.setAttribute("id", "btnVoltar");
 
   iconeVoltar.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24">
   <circle cx="12" cy="12" r="12" fill="#ffbb00"/>
   <path d="M14 6l-6 6 6 6" fill="none" stroke="#282828" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
   </svg>
   `;
-  hrefVoltar.classList.add("hover:cursor-pointer");
   hrefVoltar.appendChild(iconeVoltar);
 
   const section = document.createElement("section");
   section.classList.add(
     "p-10",
     "grid",
-    "md:grid-cols-[500px_1fr]",
+    "md:grid-cols-[1fr_1fr]",
     "md:grid-rows-4",
     "md:mt-20",
+    "md:gap-10",
   );
 
   section.setAttribute("id", "detalhes");
@@ -217,18 +220,30 @@ function verDetalhesDoCard(
 
   const h2 = document.createElement("h2");
   h2.innerText = musica;
-  h2.classList.add("text-3xl", "mb-3", "md:col-[2]", "text-[#ffbb00]");
+  h2.classList.add(
+    "text-3xl",
+    "mb-3",
+    "md:col-[2]",
+    "text-[#ffbb00]",
+    "md:text-5xl",
+  );
 
   const span = document.createElement("span");
   span.innerText = album;
-  span.classList.add("block", "mb-2", "text-[#f2e9cc]", "md:col-[2]");
+  span.classList.add(
+    "block",
+    "mb-2",
+    "text-[#f2e9cc]",
+    "md:col-[2]",
+    "md:text-2xl",
+  );
 
   const p = document.createElement("p");
   p.innerText = artista;
-  p.classList.add("text-[#f2e9cc]", "mb-3", "md:col-[2]");
+  p.classList.add("text-[#f2e9cc]", "mb-3", "md:col-[2]", "md:text-xl");
 
   const audio = document.createElement("audio");
-  audio.classList.add("w-full", "md:col-[2]");
+  audio.classList.add("w-full", "md:col-[2]", "md:w-1/2");
   audio.controls = true;
   audio.src = id;
 
@@ -244,16 +259,15 @@ function verDetalhesDoCard(
 
   main.prepend(section);
 
-  document.getElementById("btnVoltar").addEventListener("click", () => {
+  hrefVoltar.addEventListener("click", () => {
     location.reload();
   });
 }
 
 async function buscarMusicas(consulta) {
   // URL para buscas
-  const endPoint = `https://corsproxy.io/?url=https://api.deezer.com/search?q=${consulta}`;
-
-  const response = await fetch(endPoint);
+  const endPoint = `https://corsproxy.io/?url=https://api.deezer.com/search?q=${consulta}`,
+    response = await fetch(endPoint);
 
   let dadosDaBusca = await response.json();
 
@@ -272,13 +286,12 @@ formSearch.addEventListener("submit", (evento) => {
 });
 
 function inserirResultadosDeBusca(dadosDaBusca, valorBuscado) {
-  const dados = [...dadosDaBusca];
-
-  const sectionContainer = document.createElement("section");
+  const dados = [...dadosDaBusca],
+    sectionContainer = document.createElement("section");
   sectionContainer.classList.add("my-10", "px-4", "lg:my-20");
 
-  const tituloDaBusca = document.createElement("h1");
-  const span = document.createElement("span");
+  const tituloDaBusca = document.createElement("h1"),
+    span = document.createElement("span");
 
   tituloDaBusca.classList.add(
     "text-center",
@@ -310,12 +323,12 @@ function inserirResultadosDeBusca(dadosDaBusca, valorBuscado) {
   main.innerHTML = "";
 
   dados.forEach((item, index) => {
-    const posicao = index + 1;
-    const imagem = item.album.cover_medium;
-    const musica = item.title_short;
-    const album = item.album.title;
-    const artista = item.artist.name;
-    const audio = item.preview;
+    const posicao = index + 1,
+      imagem = item.album.cover_medium,
+      musica = item.title_short,
+      album = item.album.title,
+      artista = item.artist.name,
+      audio = item.preview;
 
     let novoCard = cardResultadosBuscas(
       posicao,
