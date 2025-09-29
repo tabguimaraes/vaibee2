@@ -313,12 +313,10 @@ function inserirResultadosDeBusca(dadosDaBusca, valorBuscado) {
   const sectionResultadosContainer = document.createElement("section");
   sectionResultadosContainer.classList.add(
     "grid",
-    "grid-cols-2",
+    "md:grid-cols-2",
     "lg:grid-cols-5",
-    "lg:gap-5",
+    "md:gap-5",
   );
-
-  sectionContainer.appendChild(sectionResultadosContainer);
 
   main.innerHTML = "";
 
@@ -338,8 +336,8 @@ function inserirResultadosDeBusca(dadosDaBusca, valorBuscado) {
       artista,
       audio,
     );
-
-    sectionContainer.appendChild(novoCard);
+    sectionResultadosContainer.appendChild(novoCard);
+    sectionContainer.appendChild(sectionResultadosContainer);
   });
 
   main.appendChild(sectionContainer);
@@ -388,7 +386,14 @@ function cardResultadosBuscas(index, imagem, musica, album, artista, audio) {
   // título da música
   const musicaTitulo = document.createElement("p");
   musicaTitulo.innerText = musica;
-  musicaTitulo.classList.add("col-[2]", "row-[3]", "text-[#ffbb00]", "text-xl");
+  musicaTitulo.classList.add(
+    "col-[2]",
+    "row-[3]",
+    "text-[#ffbb00]",
+    "text-xl",
+    "truncate",
+    "text-nowrap",
+  );
 
   // álbum
   const albumTitulo = document.createElement("p");
