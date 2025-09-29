@@ -296,7 +296,7 @@ function inserirResultadosDeBusca(dadosDaBusca, valorBuscado) {
   tituloDaBusca.classList.add(
     "text-center",
     "text-[#f2e9cc]",
-    "mt-10",
+    "my-10",
     "text-2xl",
     "text-wrap",
     "truncate",
@@ -350,8 +350,8 @@ function cardResultadosBuscas(index, imagem, musica, album, artista, audio) {
 
   cardContainer.classList.add(
     "grid",
-    "grid-cols-[auto_2fr_2fr_1fr]",
-    "grid-rows-4",
+    "grid-cols-[auto_1fr]",
+    "grid-rows-[1fr_1fr_auto_auto_auto_auto]",
     "gap-5",
     "p-4",
     "hover:bg-[#414141]",
@@ -367,7 +367,8 @@ function cardResultadosBuscas(index, imagem, musica, album, artista, audio) {
     "col-[1]",
     "text-2xl",
     "place-self-center",
-    "row-span-full",
+    "row-start-1",
+    "row-end-3",
     "text-[#ffbb00]",
   );
 
@@ -375,10 +376,9 @@ function cardResultadosBuscas(index, imagem, musica, album, artista, audio) {
   const capaDoAlbum = document.createElement("img");
   capaDoAlbum.src = imagem;
   capaDoAlbum.classList.add(
-    "col-start-2",
-    "col-end-4",
+    "col-[2]",
     "row-start-1",
-    "row-span-4",
+    "row-span-2",
     "rounded-xl",
     "object-cover",
     "w-full",
@@ -388,19 +388,19 @@ function cardResultadosBuscas(index, imagem, musica, album, artista, audio) {
   // título da música
   const musicaTitulo = document.createElement("p");
   musicaTitulo.innerText = musica;
-  musicaTitulo.classList.add("col-[4]", "row-[1]", "text-[#ffbb00]", "text-xl");
+  musicaTitulo.classList.add("col-[2]", "row-[3]", "text-[#ffbb00]", "text-xl");
 
   // álbum
   const albumTitulo = document.createElement("p");
   albumTitulo.innerText = album;
-  albumTitulo.classList.add("col-[4]", "row-[2]", "text-[#f2e9cc]", "truncate");
+  albumTitulo.classList.add("col-[2]", "row-[4]", "text-[#f2e9cc]", "truncate");
 
   // artista
   const artistaTitulo = document.createElement("p");
   artistaTitulo.innerText = artista;
   artistaTitulo.classList.add(
-    "col-[4]",
-    "row-[3]",
+    "col-[2]",
+    "row-[5]",
     "text-[#f2e9cc]",
     "truncate",
   );
@@ -409,7 +409,7 @@ function cardResultadosBuscas(index, imagem, musica, album, artista, audio) {
   const audioPreview = document.createElement("audio");
   audioPreview.controls = true;
   audioPreview.src = audio;
-  audioPreview.classList.add("col-[4]", "row-[4]", "w-full");
+  audioPreview.classList.add("col-span-full", "row-[6]", "w-full");
 
   // adiciona tudo no container
   cardContainer.appendChild(posicaoNaLista);
